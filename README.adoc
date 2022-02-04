@@ -6,3 +6,32 @@
 Setup for AWS Elasticache
 
 toc::[]
+
+== Usage
+
+Place this directly in your microservice's infrastructure repo!
+
+[source, hcl]
+----
+module "elasticache" {
+  source = "github.com/nsbno/terraform-aws-elasticache?ref=x.y.z"
+
+  application_name = "my-cool-train-status-thingy"
+  security_group_ids = [aws_security_group.this.id]
+
+  subnet_ids = data.aws_subnet_ids.private.ids
+}
+----
+
+== High Availability
+
+The `availability_zones` variable decides if the cluster is spun up in high availability.
+
+If it is set up, it will set up the amount of nodes needed to match the AZs and enable automatic failover.
+
+
+== Access
+
+Only the given `security_group_ids` can access the cluster.
+
+If you want to grant additional services access to the cluster, make sure to either add them to the list or manually grant access using the `security_group_id` output.
