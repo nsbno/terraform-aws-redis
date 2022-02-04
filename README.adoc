@@ -1,9 +1,9 @@
-= Elasticache
+= Redis using Elasticache
 :!toc-title:
 :!toc-placement:
 :toc:
 
-Setup for AWS Elasticache
+Setup for Redis using AWS Elasticache
 
 toc::[]
 
@@ -14,7 +14,7 @@ Place this directly in your microservice's infrastructure repo!
 [source, hcl]
 ----
 module "elasticache" {
-  source = "github.com/nsbno/terraform-aws-elasticache?ref=x.y.z"
+  source = "github.com/nsbno/terraform-aws-redis?ref=x.y.z"
 
   application_name = "my-cool-train-status-thingy"
   security_group_ids = [aws_security_group.this.id]
