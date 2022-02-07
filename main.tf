@@ -29,6 +29,7 @@ resource "aws_elasticache_replication_group" "this" {
   parameter_group_name = var.parameter_group_name
 
   node_type = var.node_type
+  port      = 6379
 
   availability_zones         = var.availability_zones
   multi_az_enabled           = length(var.availability_zones) != 0
@@ -52,7 +53,7 @@ resource "aws_security_group" "this" {
 }
 
 resource "aws_security_group_rule" "ingress_from_application_to_elasticache" {
-  for_each = toset(var.security_group_ids)
+  count = length(var.security_group_ids)
 
   security_group_id = aws_security_group.this.id
 
@@ -61,13 +62,13 @@ resource "aws_security_group_rule" "ingress_from_application_to_elasticache" {
   protocol                 = "tcp"
   from_port                = aws_elasticache_replication_group.this.port
   to_port                  = aws_elasticache_replication_group.this.port
-  source_security_group_id = each.value
+  source_security_group_id = var.security_group_ids[count.index]
 }
 
 resource "aws_security_group_rule" "egress_from_application_to_elasticache" {
-  for_each = toset(var.security_group_ids)
+  count = length(var.security_group_ids)
 
-  security_group_id = each.value
+  security_group_id = var.security_group_ids[count.index]
 
   type = "egress"
 
