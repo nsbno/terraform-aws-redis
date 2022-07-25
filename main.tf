@@ -4,7 +4,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 3.0.0"
+      version = ">= 4.0.0"
     }
   }
 }
@@ -21,8 +21,8 @@ resource "aws_elasticache_subnet_group" "this" {
 }
 
 resource "aws_elasticache_replication_group" "this" {
-  replication_group_id          = "${var.application_name}"
-  replication_group_description = "Replication group for ElastiCache"
+  replication_group_id = "${var.application_name}"
+  description          = "Replication group for ElastiCache"
 
   engine               = "redis"
   engine_version       = var.engine_version
@@ -33,7 +33,7 @@ resource "aws_elasticache_replication_group" "this" {
 
   availability_zones         = var.availability_zones
   multi_az_enabled           = length(var.availability_zones) != 0
-  number_cache_clusters      = length(var.availability_zones) == 0 ? 1 : length(var.availability_zones)
+  num_cache_clusters         = length(var.availability_zones) == 0 ? 1 : length(var.availability_zones)
   automatic_failover_enabled = length(var.availability_zones) != 0
 
   at_rest_encryption_enabled = true
