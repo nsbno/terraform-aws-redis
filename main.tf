@@ -50,6 +50,8 @@ resource "aws_elasticache_replication_group" "this" {
  */
 resource "aws_security_group" "this" {
   name = "${var.application_name}-redis-cluster"
+
+  vpc_id = var.vpc_id
 }
 
 resource "aws_security_group_rule" "ingress_from_application_to_elasticache" {

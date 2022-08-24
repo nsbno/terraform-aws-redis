@@ -8,8 +8,14 @@ variable "security_group_ids" {
   type = list(string)
 }
 
+variable "vpc_id" {
+  description = "The ID of the VPC the ElastiCache cluster will be in"
+  type = string
+}
+
 variable "subnet_ids" {
   description = "Subnets where the elasticache will be placed"
+  type = list(string)
 }
 
 variable "node_type" {
