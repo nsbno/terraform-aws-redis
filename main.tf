@@ -21,8 +21,8 @@ resource "aws_elasticache_subnet_group" "this" {
 }
 
 resource "aws_elasticache_replication_group" "this" {
-  replication_group_id = "${var.application_name}"
-  description          = "Replication group for ElastiCache"
+  replication_group_id          = var.application_name
+  description                   = "Replication group for ElastiCache"
 
   engine               = "redis"
   engine_version       = var.engine_version
@@ -31,10 +31,10 @@ resource "aws_elasticache_replication_group" "this" {
   node_type = var.node_type
   port      = 6379
 
-  availability_zones         = var.availability_zones
-  multi_az_enabled           = length(var.availability_zones) != 0
-  num_cache_clusters         = length(var.availability_zones) == 0 ? 1 : length(var.availability_zones)
-  automatic_failover_enabled = length(var.availability_zones) != 0
+  preferred_cache_cluster_azs = var.availability_zones
+  multi_az_enabled            = length(var.availability_zones) != 0
+  num_cache_clusters          = length(var.availability_zones) == 0 ? 1 : length(var.availability_zones)
+  automatic_failover_enabled  = length(var.availability_zones) != 0
 
   at_rest_encryption_enabled = true
   transit_encryption_enabled = true
