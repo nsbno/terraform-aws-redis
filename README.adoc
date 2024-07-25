@@ -9,7 +9,7 @@ toc::[]
 
 == Usage
 
-Place this directly in your microservice's infrastructure repo!
+Remember to check out the link:variables.tf[*variables*] and link:outputs.tf[*outputs*] to see all options.
 
 [source, hcl]
 ----
