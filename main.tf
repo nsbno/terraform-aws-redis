@@ -21,8 +21,8 @@ resource "aws_elasticache_subnet_group" "this" {
 }
 
 resource "aws_elasticache_replication_group" "this" {
-  replication_group_id          = var.application_name
-  description                   = "Replication group for ElastiCache"
+  replication_group_id = var.application_name
+  description          = "Replication group for ElastiCache"
 
   engine               = "redis"
   engine_version       = var.engine_version
@@ -41,6 +41,7 @@ resource "aws_elasticache_replication_group" "this" {
 
   subnet_group_name  = aws_elasticache_subnet_group.this.name
   security_group_ids = [aws_security_group.this.id]
+  user_group_ids     = var.user_group_ids
 }
 
 /*
