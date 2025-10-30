@@ -35,6 +35,7 @@ resource "aws_elasticache_replication_group" "this" {
   automatic_failover_enabled  = length(var.availability_zones) > 1
   multi_az_enabled            = length(var.availability_zones) > 1
   num_cache_clusters          = length(var.availability_zones) == 0 ? 1 : length(var.availability_zones)
+  apply_immediately          = var.apply_immediately
   at_rest_encryption_enabled = true
   transit_encryption_enabled = true
 
