@@ -35,9 +35,9 @@ resource "aws_elasticache_replication_group" "this" {
   automatic_failover_enabled  = length(var.availability_zones) > 1
   multi_az_enabled            = length(var.availability_zones) > 1
   num_cache_clusters          = length(var.availability_zones) == 0 ? 1 : length(var.availability_zones)
-  apply_immediately          = var.apply_immediately
-  at_rest_encryption_enabled = true
-  transit_encryption_enabled = true
+  apply_immediately           = var.apply_immediately
+  at_rest_encryption_enabled  = true
+  transit_encryption_enabled  = true
 
   subnet_group_name  = aws_elasticache_subnet_group.this.name
   security_group_ids = [aws_security_group.this.id]
