@@ -54,7 +54,7 @@ variable "user_group_ids" {
 }
 
 variable "apply_immediately" {
-  description = "Apply changes immediately. Set to ture when changing the number of nodes."
+  description = "Apply changes immediately. Set to true when changing any attributes. Can cause downtime."
   type        = bool
   default     = false
 }
