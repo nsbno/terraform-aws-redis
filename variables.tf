@@ -22,7 +22,7 @@ variable "node_type" {
   description = "Instance type for the nodes"
   type        = string
 
-  default = "cache.t2.small"
+  default = "cache.t4g.small"
 }
 
 variable "availability_zones" {
