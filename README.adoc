@@ -5,6 +5,12 @@
 
 Setup for Redis using AWS Elasticache
 
+[WARNING]
+This module will be deprecate the use of Redis in favor of Valkey, which is a drop-in replacement for Redis `>= 7.2`.
+
+Future usage should use `terraform-aws-cache` for setting up cache (based on Valkey).
+See https://github.com/nsbno/terraform-aws-cache/tree/1.0.0[terraform-aws-cache for upgrade instructions].
+
 toc::[]
 
 == Usage
