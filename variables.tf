@@ -52,3 +52,9 @@ variable "user_group_ids" {
 
   default = null
 }
+
+variable "apply_immediately" {
+  description = "Apply changes immediately. Set to true when changing any attributes. Can cause downtime."
+  type        = bool
+  default     = false
+}
